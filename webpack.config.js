@@ -20,7 +20,7 @@ let plugins = [
   })
 ];
 
-if(!production) {
+if(production) {
   plugins = plugins.concat([
     new webpack.optimize.UglifyJsPlugin({
       mangle: true,
@@ -53,6 +53,10 @@ module.exports = {
       {
         test: /\.html$/,
         loader: 'html'
+      },
+      {
+        test: /\.scss$/,
+        loader: ExtractTextPlugin.extract('style', 'css!resolve-url!sass?sourceMap')
       },
       {
         test: /\.(woff|ttf|svg|eot).*/,
